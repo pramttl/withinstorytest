@@ -28,9 +28,10 @@ TOPIC_CHOICES = (
 class User(models.Model):
     first_name = models.CharField(max_length=30)
     last_name = models.CharField(max_length=30)
-    website =  models.URLField()
+    website =  models.URLField(blank=True)
+    email = models.EmailField()
     # interest_areas = models.CharField(max_length=10 , choices = TOPIC_CHOICES)
-    about = models.TextField()
+    about = models.TextField(blank=True, verbose_name='About-Yourself')
 
     def __unicode__(self):
         return u'%s %s' % (self.first_name, self.last_name)
@@ -43,7 +44,7 @@ class Pitch(models.Model):
     # topics = models.CharField(max_length=10 , choices = TOPIC_CHOICES)
     requested_amount = models.BigIntegerField()
     proposed_deliverable = models.TextField()
-    editorial_deadline = models.DateTimeField()
+    editorial_deadline = models.DateField()
 
     def __unicode__(self):
         return self.slug
